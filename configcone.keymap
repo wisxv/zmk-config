@@ -1,0 +1,59 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    behaviors {
+        // Кастомные поведения
+        mt: mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        lt: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        // Основной слой (QWERTY)
+        default_layer {
+            bindings = <
+                // Левый ряд
+                &kp Q  &kp W  &kp E  &kp R  &kp T         &kp Y  &kp U  &kp I     &kp O    &kp P
+                &kp A  &kp S  &kp D  &kp F  &kp G         &kp H  &kp J  &kp K     &kp L    &kp SCLN
+                &kp Z  &kp X  &kp C  &kp V  &kp B         &kp N  &kp M  &kp COMM  &kp DOT  &kp FSLS
+                                  &lt NAV SPACE  &mt LCTL TAB    &mt RALT ENTER  &mo SYM
+            >;
+        };
+
+        // Слой навигации (активируется удержанием пробела)
+        nav_layer {
+            bindings = <
+                &kp ESC   &kp HOME &kp UP    &kp END   &kp PG_UP     &kp INS  &kp N7  &kp N8  &kp N9  &kp BSPC
+                &kp DEL   &kp LEFT &kp DOWN  &kp RIGHT &kp PG_DN     &kp EQL  &kp N4  &kp N5  &kp N6  &kp MINUS
+                &kp LCTRL &kp GRAVE&kp LCBR  &kp RBRC  &kp CUT       &kp PASTE&kp N1  &kp N2  &kp N3  &kp PLUS
+                                         &trans &trans &trans      &kp N0  &kp DOT  &trans
+            >;
+        };
+
+        // Слой символов/цифр (активируется удержанием нижней правой клавиши)
+        sym_layer {
+            bindings = <
+                &kp EXCL  &kp AT   &kp HASH  &kp DLLR  &kp PRCNT     &kp CARET &kp AMPS &kp STAR  &kp LBKT &kp RBKT
+                &kp PIPE  &kp TILDE&kp LPRN  &kp RPRN  &kp UNDER     &kp COLON &kp QUOT &kp DQUO  &kp LT   &kp GT
+                &kp BSLH  &kp CLCK &kp LBRC  &kp RBRC  &kp MINUS     &kp PLUS  &kp NLCK &kp CIRC  &kp ASTR &kp SLASH
+                                         &rgb_tog &rgb_eff &trans   &trans &trans   &trans
+            >;
+        };
+    };
+};
