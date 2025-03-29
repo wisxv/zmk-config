@@ -5,7 +5,7 @@ include:
       - -DCONFIG_ZMK_RGB_UNDERGLOW=y
       - -DCONFIG_WS2812_STRIP=y
       - -DCONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y  # Автовыключение при бездействии
-      - -DCONFIG_ZMK_RGB_UNDERGLOW_BRT_START=50     # Яркость 50% при старте
+      - -DCONFIG_ZMK_RGB_UNDERGLOW_BRT_START=60     # Яркость 50% при старте
       - -DCONFIG_ZMK_RGB_UNDERGLOW_ON_START=y       # Включить сразу
   - board: nice_nano_v2
     shield: corne_right
