@@ -3,10 +3,6 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Layers
-#define MAC 4
-#define MAC_CODE 5
-#define MAC_NUM 6
-#define MAC_FUNC 7
 #define WIN 0
 #define WIN_CODE 1
 #define WIN_NUM 2
@@ -20,37 +16,15 @@
 
 / {
     macros {
-        spotlight: spotlight {
-            label = "spotlight";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp SPACE>, <&macro_release &kp LGUI>; 
-        };
-
-        mac_emoji: mac_emoji {
-            label = "mac_emoji";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>, <&macro_press &kp LCTRL>, <&macro_tap &kp SPACE>, <&macro_release &kp LCTRL>, <&macro_release &kp LGUI>; 
-        };
-
         win_emoji: win_emoji {
             label = "win_emoji";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp DOT>, <&macro_release &kp LGUI>; 
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp DOT>, <&macro_release &kp LGUI>;
         };
     };
 
     behaviors {
-        td_multi_mac: tap_dance_multi_mac {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_MULTI_MAC";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp ESC>, <&spotlight>, <&mac_emoji>;
-        };
-
         td_multi_windows: tap_dance_multi_windows {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_MULTI_WINDOWS";
@@ -63,7 +37,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "BOTTOM_ROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <135>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -79,16 +53,6 @@
             bindings = <&kp>, <&kp>;
             retro-tap;
         };
-
-        sm: space_mod {
-            compatible = "zmk,behavior-hold-tap";
-            label = "SPACE_MOD";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <125>;
-            bindings = <&kp>, <&kp>;
-        };
     };
 
     keymap {
@@ -100,7 +64,7 @@
                 &none      &kp Q            &kp W      &kp F          &kp P         &kp G
                 &none      &kp A            &kp R      &kp S          &kp T         &kp D
                 &none      &bm LSHFT Z      &kp X      &kp C          &kp V         &kp B
-                &kp LGUI  &kp LALT         &sm LCTRL SPACE
+                &kp LGUI   &kp LALT         &kp SPACE  // Упростил до простых клавиш
 
                 // Right Half (15 keys + 3 thumb)
                 &kp J                 &kp L                  &kp U                  &kp Y        &kp BSPC            &none
@@ -151,74 +115,10 @@
                 &trans     &trans          &trans
 
                 // Right Half
-                &none      &none       &none                  &none       &to MAC      &none
+                &none      &none       &none                  &none       &none      &none
                 &kp 6      &kp F7      &kp F8                 &kp F9      &kp F10      &none
                 &none      &none       &none                  &none       &kp F12      &none
                 &trans     &trans      &trans      
-            >;
-        };
-
-        mac_default_layer {
-            bindings = <
-                // Left Half
-                &none      &kp Q            &kp W      &kp F          &kp P         &kp G
-                &none      &kp A            &kp R      &kp S          &kp T         &kp D
-                &none      &bm LSHFT Z      &kp X      &kp C          &kp V         &kp B
-                &kp LCTRL  &kp LALT         &sm LGUI SPACE
-
-                // Right Half
-                &kp J                 &kp L                  &kp U              &kp Y        &kp BSPC            &none
-                &kp H                 &kp N                  &kp E              &kp I        &kp O               &none
-                &kp K                 &kp M                  &kp COMMA          &kp DOT      &bm RSHFT FSLH      &none
-                &lt MAC_CODE TAB      &lt MAC_NUM ENTER      &td_multi_mac      
-            >;
-        };
-
-        mac_code_layer {
-            bindings = <
-                // Left Half
-                &none      &kp UNDER           &kp MINUS     &kp PLUS       &kp EQUAL      &kp COLON
-                &none      &kp LBRC            &kp LPAR      &kp RPAR       &kp RBRC       &kp PIPE
-                &none      &cm LSHFT LBKT      &kp APOS      &kp DQT        &kp RBKT       &kp SEMI
-                &kp LCTRL  &kp LALT            &sm LGUI SPACE
-
-                // Right Half
-                &kp GRAVE      &kp C_PREV        &kp C_PP           &kp C_NEXT        &kp DEL             &none
-                &kp ESC        &kp LEFT          &kp UP             &kp DOWN          &kp RIGHT           &none
-                &kp TILDE      &kp C_VOL_DN      &kp C_MUTE         &kp C_VOL_UP      &cm RSHFT BSLH      &none
-                &none          &none             &td_multi_mac      
-            >;
-        };
-
-        mac_number_layer {
-            bindings = < 
-                // Left Half
-                &none      &kp EXCL       &kp AT      &kp HASH       &kp DLLR      &kp PRCNT
-                &none      &kp N1         &kp N2      &kp N3         &kp N4        &kp N5
-                &none      &kp LSHFT      &none       &none          &none         &mo MAC_FUNC
-                &kp LCTRL  &kp LALT       &sm LGUI SPACE
-
-                // Right Half
-                &kp CARET      &kp AMPS      &kp ASTERISK       &kp CAPS      &kp BSPC       &none
-                &kp N6         &kp N7        &kp N8             &kp N9        &kp N0         &none
-                &none          &none         &kp COMMA          &kp DOT       &kp RSHFT      &none
-                &none          &none         &td_multi_mac      
-            >;
-        };
-
-        mac_function_layer {
-            bindings =<
-                // Left Half
-                &none      &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3      &bt BT_SEL 4
-                &none      &kp F1          &kp F2            &kp F3            &kp F4            &kp F5
-                &none      &kp F11         &none             &bt BT_CLR        &bootloader       &none
-                &kp LCTRL  &kp LALT        &sm LGUI SPACE
-
-                // Right Half
-                &none      &none       &none              &none       &to WIN      &none
-                &kp 6      &kp F7      &kp F8             &kp F9      &kp F10      &none
-                &none      &none       &none              &none       &kp F12      &none
-                &none      &none       &td_multi_mac      
             >;
         };
     };
