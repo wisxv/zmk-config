@@ -9,18 +9,6 @@
             label = "RGB_TOG";
             #binding-cells = <0>;
         };
-        rgb_up: rgb_up {
-            compatible = "zmk,behavior-rgb-underglow-inc";
-            label = "RGB_UP";
-            #binding-cells = <0>;
-            inc_step = <10>;
-        };
-        rgb_dn: rgb_dn {
-            compatible = "zmk,behavior-rgb-underglow-dec";
-            label = "RGB_DN";
-            #binding-cells = <0>;
-            dec_step = <10>;
-        };
     };
 
     keymap {
@@ -31,7 +19,7 @@
                 &none   &none   &none   &none   &none   &none
                 &none   &none   &none   &none   &none   &none
                 &none   &none   &none   &none   &none   &none
-                        &rgb_up &rgb_dn &rgb_tog
+                        &none   &none   &rgb_tog
             >;
         };
     };
