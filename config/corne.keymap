@@ -7,17 +7,17 @@
 
         debug_layer {
             bindings = <
-                /* L */
-                &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &none
-                &kp N13 &kp N14 &kp N15 &kp N16 &kp N17 &none
-                &kp N25 &kp N26 &kp N27 &kp N28 &kp N29 &none
-                &kp N36 &kp N0   &kp N0   /* Thumb клавиши (36 работает, 2 другие нет) */
+                /* Левая половина */
+                &kp A &kp B &kp C &kp D &kp E &none
+                &kp F &kp G &kp H &kp I &kp J &none
+                &kp K &kp L &kp M &kp N &kp O &none
+                &kp P &kp Q &kp R
 
-                /* R */
-                &kp N6  &kp N7  &none   &kp N9  &kp N10 &none
-                &kp N18 &none   &kp N20 &kp N21 &kp N22 &none
-                &kp N30 &kp N31 &none   &kp N33 &kp N34 &none
-                &kp N21 &kp N22 &kp N23 /* Thumb клавиши (все работают) */
+                /* Правая половина */
+                &kp S &kp T &kp U &kp V &kp W &none
+                &kp X &kp Y &kp Z &kp N1 &kp N2 &none
+                &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &none
+                &kp N8 &kp N9 &kp N0
             >;
         };
     };
