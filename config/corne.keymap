@@ -7,16 +7,22 @@
 
         default_layer {
             bindings = <
-                &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U &kp I &kp O &kp P
-                &kp A &kp S &kp D &kp F &kp G     &kp H &kp J &kp K &kp L &kp SEMI
-                &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M &kp COMMA &kp DOT &kp SLASH
-                                    &kp SPACE &kp TAB   &kp ENTER &kp ESC
+                // Левая половина (6 колонок × 3 строки + 3 thumb)
+                &kp Q    &kp W    &kp E    &kp R    &kp T    &kp NO    // Первая строка (верхний ряд)
+                &kp A    &kp S    &kp D    &kp F    &kp G    &kp NO    // Вторая строка (основной ряд)
+                &kp Z    &kp X    &kp C    &kp V    &kp B    &kp NO    // Третья строка (нижний ряд)
+                &kp TAB  &kp ESC  &kp SPACE                            // Thumb-клавиши (левый большой палец)
+
+                // Правая половина (зеркально)
+                &kp NO   &kp Y    &kp U    &kp I    &kp O    &kp P     // Первая строка
+                &kp NO   &kp H    &kp J    &kp K    &kp L    &kp SEMI  // Вторая строка
+                &kp NO   &kp N    &kp M    &kp COMMA &kp DOT  &kp SLASH // Третья строка
+                &kp ENTER &kp DEL  &kp BKSP                              // Thumb-клавиши (правый большой палец)
             >;
         };
     };
 };
 
-// Добавьте это! 
 &led_strip {
-    chain-length = <18>; // Для каждой половины Corne (всего 12 на клавиатуре)
+    chain-length = <18>; // 18 светодиодов на половину
 };
