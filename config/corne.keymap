@@ -7,7 +7,7 @@
 #include <dt-bindings/zmk/outputs.h>
 
 &led_strip {
-    chain-length = <18>;  // Укажите нужное количество светодиодов
+    chain-length = <18>;
 };
 
 &mt {
@@ -23,12 +23,12 @@
     behaviors {
         bat_left: bat_left {
             compatible = "zmk,behavior-triggered-action";
-            trigger = <PRESS>;
+            trigger = PRESS;
             action = <&rgb_ug_status 0>;
         };
         bat_right: bat_right {
             compatible = "zmk,behavior-triggered-action";
-            trigger = <PRESS>;
+            trigger = PRESS;
             action = <&rgb_ug_status 1>;
         };
     };
@@ -152,7 +152,6 @@
                      &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE    &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
-
 
         numsym_layer {
             bindings = <
