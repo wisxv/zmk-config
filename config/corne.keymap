@@ -7,7 +7,7 @@
 #include <dt-bindings/zmk/outputs.h>
 
 &led_strip {
-    chain-length = <18>;  // 18 светодиодов для Corne
+    chain-length = <18>;  // Укажите нужное количество светодиодов
 };
 
 &mt {
@@ -21,35 +21,21 @@
 
 / {
     behaviors {
-        status_left: status_left {
-            compatible = "zmk,behavior-rgb-underglow";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug BATTERY_LEFT>;
+        bat_left: bat_left {
+            compatible = "zmk,behavior-triggered-action";
+            trigger = <PRESS>;
+            action = <&rgb_ug_status 0>;
         };
-        status_right: status_right {
-            compatible = "zmk,behavior-rgb-underglow";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug BATTERY_RIGHT>;
-        };
-    };
-
-    rgb_ug {
-        battery_left {
-            color-map = <0 0xFF0000 20 0xFFA500 40 0xFFFF00 60 0x00FF00>;
-            led-start = <0>;    // Левые светодиоды (0-5)
-            led-count = <6>;
-            fade-out-ms = <2000>;
-        };
-        battery_right {
-            color-map = <0 0xFF0000 20 0xFFA500 40 0xFFFF00 60 0x00FF00>;
-            led-start = <6>;    // Правые светодиоды (6-11)
-            led-count = <6>;
-            fade-out-ms = <2000>;
+        bat_right: bat_right {
+            compatible = "zmk,behavior-triggered-action";
+            trigger = <PRESS>;
+            action = <&rgb_ug_status 1>;
         };
     };
 
     combos {
         compatible = "zmk,combos";
+
         combo_esc {
             timeout-ms = <50>;
             key-positions = <1 2 3>;
@@ -160,37 +146,38 @@
 
         colemak_layer {
             bindings = <
-                &none  &kp Q  &kp W  &kp F  &kp P  &kp B          &kp J  &kp L  &kp U  &kp Y  &kp SEMI  &none
-                &none  &kp A  &kp R  &kp S  &kp T  &kp G          &kp M  &kp N  &kp E  &kp I  &kp O     &none
-                &none  &kp Z  &kp X  &kp C  &kp D  &kp V          &kp K  &kp H  &kp ,  &kp .  &kp FSLH  &none
-                             &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE  &lt 1 ENTER  &mt RSFT BSPC  &mt LALT ESC
+&none  &kp Q  &kp W  &kp F          &kp P     &kp B          &kp J        &kp L                      &kp U             &kp Y    &kp SEMICOLON  &none
+&none  &kp A  &kp R  &kp S          &kp T     &kp G          &kp M        &kp N                      &kp E             &kp I    &kp O          &none
+&none  &kp Z  &kp X  &kp C          &kp D     &kp V          &kp K        &kp H                      &kp COMMA         &kp DOT  &kp FSLH       &none
+                     &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE    &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
 
+
         numsym_layer {
             bindings = <
-                &trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5      &kp LT  &kp LBKT  &kp LBRC  &kp LPAR  &kp SEMI  &trans
-                &trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0      &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &kp SQT  &trans
-                &trans  &kp BSLH  &kp MINUS  &kp EQUAL  &kp FSLH  &kp ASTR  &kp GT  &kp RBKT  &kp RBRC  &kp RPAR  &kp GRAVE  &trans
-                                      &trans  &trans  &trans      &trans  &trans  &trans
+&trans  &kp N1         &kp N2     &kp N3     &kp N4     &kp N5          &kp LESS_THAN     &kp LEFT_BRACKET   &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp SEMICOLON  &trans
+&trans  &kp NUMBER_6   &kp N7     &kp N8     &kp N9     &kp NUMBER_0    &kp LEFT          &kp DOWN           &kp UP           &kp RIGHT              &kp SQT        &trans
+&trans  &kp BACKSLASH  &kp MINUS  &kp EQUAL  &kp SLASH  &kp ASTERISK    &kp GREATER_THAN  &kp RIGHT_BRACKET  &kp RIGHT_BRACE  &kp RIGHT_PARENTHESIS  &kp GRAVE      &trans
+                                  &trans     &trans     &trans          &trans            &trans             &trans
             >;
         };
 
         fun_layer {
             bindings = <
-                &trans  &kp SPACE  &kp UP  &kp ENTER  &kp PG_UP  &kp C_VOL_UP  &kp C_BRI_UP  &kp F1  &kp F4  &kp F7  &kp F10  &trans
-                &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &kp HOME  &kp C_MUTE  &kp C_PP  &kp F2  &kp F5  &kp F8  &kp F11  &trans
-                &trans  &kp INS  &kp PSCRN  &kp SLCK  &kp PG_DN  &kp C_VOL_DN  &kp C_BRI_DN  &kp F3  &kp F6  &kp F9  &kp F12  &trans
-                                            &trans  &trans  &trans      &trans  &trans  &trans
+&trans  &kp SPACE  &kp UP_ARROW     &kp ENTER       &kp PAGE_UP    &kp C_VOL_UP    &kp C_BRIGHTNESS_INC  &kp F1  &kp F4  &kp F7  &kp F10  &trans
+&trans  &kp LEFT   &kp DOWN         &kp RIGHT       &kp HOME       &kp C_MUTE      &kp C_PLAY_PAUSE      &kp F2  &kp F5  &kp F8  &kp F11  &trans
+&trans  &kp INS    &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAGE_DOWN  &kp C_VOL_DN    &kp C_BRIGHTNESS_DEC  &kp F3  &kp F6  &kp F9  &kp F12  &trans
+                                    &trans          &trans         &trans          &trans                &trans  &trans
             >;
         };
 
         sys_layer {
             bindings = <
-                &trans  &bt BT_CLR  &bt BT_CLR_ALL  &bt BT_PRV  &bt BT_NXT  &none      &none  &none  &none  &none  &none  &none
-                &trans  &bt BT_SEL0  &bt BT_SEL1  &bt BT_SEL2  &bt BT_SEL3  &status_left      &status_right  &none  &none  &none  &none  &none
-                &trans  &bootloader  &sys_reset  &none  &none  &none      &none  &none  &none  &none  &none  &none
-                                                  &trans  &trans  &trans      &trans  &trans  &trans
+&trans  &bt BT_CLR    &bt BT_CLR_ALL  &bt BT_PRV    &bt BT_NXT    &trans          &none   &trans  &trans  &trans  &trans  &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &none   &none   &none   &none   &trans
+&trans  &bootloader   &sys_reset      &bat_left     &bat_right    &none           &none   &trans  &trans  &trans  &trans  &trans
+                                      &trans        &trans        &trans          &trans  &trans  &trans
             >;
         };
     };
