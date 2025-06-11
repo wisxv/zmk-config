@@ -1,43 +1,27 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
+#define RU_A &kp 0x0430
+#define RU_B &kp 0x0431
+#define RU_V &kp 0x0432
+#define RU_G &kp 0x0433
+#define RU_D &kp 0x0434
+#defineRU_E &kp 0x0435
+#define RU_ZH &kp 0x0436
+#define RU_Z &kp 0x0437
+#define RU_I &kp 0x0438
+#define RU_J &kp 0x0439
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            bindings = <
-                &kp Q &kp W &kp E &kp R &kp T
-                &kp A &kp S &kp D &kp F &kp G
-                &kp Z &kp X &kp C &kp V &kp B
-                &kp TAB &kp LCTRL &kp LALT &kp SPACE
-            >;
-        };
-
         russian_layer {
             bindings = <
-                &kp CYRILLIC_SHORT_I
-                &kp CYRILLIC_TSE
-                &kp CYRILLIC_U
-                &kp CYRILLIC_KA
-                &kp CYRILLIC_IE
-                
-                &kp CYRILLIC_A
-                &kp CYRILLIC_ER
-                &kp CYRILLIC_ES
-                &kp CYRILLIC_TE
-                &kp CYRILLIC_GHE
-                
-                &kp CYRILLIC_ZE
-                &kp CYRILLIC_HA
-                &kp CYRILLIC_EF
-                &kp CYRILLIC_DE
-                &kp CYRILLIC_SOFT_SIGN
-                
-                &kp TAB
-                &kp LCTRL
-                &kp LALT
-                &kp SPACE
+                RU_J &kp 0x0446 &kp 0x0443 &kp 0x043A RU_E
+                RU_A &kp 0x0440 &kp 0x0441 RU_V &kp 0x043F
+                RU_Z &kp 0x044F &kp 0x0447 &kp 0x0448 &kp 0x0438
+                &kp TAB &kp LCTRL &kp LALT &kp SPACE
             >;
         };
     };
