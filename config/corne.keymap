@@ -21,25 +21,24 @@
 
 / {
     behaviors {
-        e_yo: e_yo {
+         e_yo: e_yo {
             compatible = "zmk,behavior-hold-tap";
             label = "E_YO";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
             bindings = <&kp CYRILLIC_IE>, <&kp CYRILLIC_IO>;
         };
 
+        // Поведение для Ь/Ъ (тап - Ь, холд - Ъ)
         b_soft_hard: b_soft_hard {
             compatible = "zmk,behavior-hold-tap";
             label = "B_SOFT_HARD";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
             bindings = <&kp CYRILLIC_SOFT_SIGN>, <&kp CYRILLIC_HARD_SIGN>;
         };
     };
@@ -195,8 +194,8 @@
         russian_layer {
             bindings = <
                 &none  &kp CYRILLIC_SHORT_I  &kp CYRILLIC_TSE  &kp CYRILLIC_U  &kp CYRILLIC_KA  &kp CYRILLIC_IE  &kp CYRILLIC_EL  &kp CYRILLIC_SHCHA  &kp CYRILLIC_YA  &kp CYRILLIC_ZHE  &to 0  &none
-                &none  &kp CYRILLIC_A        &kp CYRILLIC_ER   &kp CYRILLIC_ES &kp CYRILLIC_TE  &kp CYRILLIC_GHE &e_yo  &kp CYRILLIC_EN  &kp CYRILLIC_I  &kp CYRILLIC_O  &none
-                &none  &kp CYRILLIC_ZE       &kp CYRILLIC_HA   &kp CYRILLIC_EF &kp CYRILLIC_DE  &b_soft_hard  &kp CYRILLIC_EM  &kp CYRILLIC_VE  &kp COMMA  &kp DOT  &kp FSLH  &none
+                &none  &kp CYRILLIC_A        &kp CYRILLIC_ER   &kp CYRILLIC_ES &kp CYRILLIC_TE  &kp CYRILLIC_GHE &e_yo            &kp CYRILLIC_EN     &kp CYRILLIC_I   &kp CYRILLIC_O    &none
+                &none  &kp CYRILLIC_ZE       &kp CYRILLIC_HA   &kp CYRILLIC_EF &kp CYRILLIC_DE  &b_soft_hard     &kp CYRILLIC_EM  &kp CYRILLIC_VE     &kp COMMA        &kp DOT           &kp FSLH  &none
                                              &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE  &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
