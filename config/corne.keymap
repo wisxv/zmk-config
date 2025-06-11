@@ -13,5 +13,32 @@
                 &kp TAB &kp LCTRL &kp LALT &kp SPACE
             >;
         };
+
+        russian_layer {
+            bindings = <
+                &kp CYRILLIC_SHORT_I
+                &kp CYRILLIC_TSE
+                &kp CYRILLIC_U
+                &kp CYRILLIC_KA
+                &kp CYRILLIC_IE
+                
+                &kp CYRILLIC_A
+                &kp CYRILLIC_ER
+                &kp CYRILLIC_ES
+                &kp CYRILLIC_TE
+                &kp CYRILLIC_GHE
+                
+                &kp CYRILLIC_ZE
+                &kp CYRILLIC_HA
+                &kp CYRILLIC_EF
+                &kp CYRILLIC_DE
+                &kp CYRILLIC_SOFT_SIGN
+                
+                &kp TAB
+                &kp LCTRL
+                &kp LALT
+                &kp SPACE
+            >;
+        };
     };
 };
