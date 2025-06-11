@@ -7,7 +7,7 @@
 #include <dt-bindings/zmk/outputs.h>
 
 &led_strip {
-    chain-length = <18>;  // Укажите нужное количество светодиодов
+    chain-length = <18>;
 };
 
 &mt {
@@ -20,110 +20,53 @@
 &lt { tapping-term-ms = <400>; };
 
 / {
+    behaviors {
+        // Поведение для Ь (тап) / Ъ (холд)
+        b_soft_hard: b_soft_hard {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SOFT_HARD_SIGN";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Поведение для Е (тап) / Ё (холд)
+        e_yo: e_yo {
+            compatible = "zmk,behavior-hold-tap";
+            label = "E_YO";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
-        combo_esc {
-            timeout-ms = <50>;
-            key-positions = <1 2 3>;
-            bindings = <&kp ESCAPE>;
-        };
-
-        combo_bksp {
-            timeout-ms = <50>;
-            key-positions = <10 9 8>;
-            bindings = <&kp BACKSPACE>;
-        };
-
-        combo_tab {
-            bindings = <&kp TAB>;
-            key-positions = <13 14 15>;
-        };
-
-        combo_shift {
-            bindings = <&kp LEFT_SHIFT>;
-            key-positions = <25 26 27>;
-        };
-
-        combo_delete {
-            bindings = <&kp DELETE>;
-            key-positions = <21 22 20>;
-        };
-
-        combo_rshift {
-            bindings = <&kp RIGHT_SHIFT>;
-            key-positions = <33 34 32>;
-        };
-
-        exclm {
-            bindings = <&kp EXCLAMATION>;
-            key-positions = <1 13>;
-        };
-
-        at {
-            bindings = <&kp AT_SIGN>;
-            key-positions = <2 14>;
-        };
-
-        hash {
-            bindings = <&kp HASH>;
-            key-positions = <3 15>;
-        };
-
-        dllr {
-            bindings = <&kp DOLLAR>;
-            key-positions = <4 16>;
-        };
-
-        percnt {
-            bindings = <&kp PERCENT>;
-            key-positions = <5 17>;
-        };
-
-        caret {
-            bindings = <&kp CARET>;
-            key-positions = <6 18>;
-        };
-
-        and {
-            bindings = <&kp AMPERSAND>;
-            key-positions = <7 19>;
-        };
-
-        str {
-            bindings = <&kp ASTERISK>;
-            key-positions = <8 20>;
-        };
-
-        leftparen {
-            bindings = <&kp LPAR>;
-            key-positions = <9 21>;
-        };
-
-        rparen {
-            bindings = <&kp RPAR>;
-            key-positions = <10 22>;
-        };
-
-        layout_switch {
-            bindings = <&tog 4>;
-            key-positions = <36 37 40 41>;
-        };
-
-        system_reset {
-            bindings = <&sys_reset>;
-            key-positions = <3 4 5 14>;
-        };
-
-        bootloader {
-            bindings = <&bootloader>;
-            key-positions = <15 16 17 26>;
-        };
-
-        system_layer_combo {
-            bindings = <&mo 3>;
-            key-positions = <36 37 38>;
-        };
+        combo_esc { timeout-ms = <50>; key-positions = <1 2 3>; bindings = <&kp ESCAPE>; };
+        combo_bksp { timeout-ms = <50>; key-positions = <10 9 8>; bindings = <&kp BACKSPACE>; };
+        combo_tab { bindings = <&kp TAB>; key-positions = <13 14 15>; };
+        combo_shift { bindings = <&kp LEFT_SHIFT>; key-positions = <25 26 27>; };
+        combo_delete { bindings = <&kp DELETE>; key-positions = <21 22 20>; };
+        combo_rshift { bindings = <&kp RIGHT_SHIFT>; key-positions = <33 34 32>; };
+        exclm { bindings = <&kp EXCLAMATION>; key-positions = <1 13>; };
+        at { bindings = <&kp AT_SIGN>; key-positions = <2 14>; };
+        hash { bindings = <&kp HASH>; key-positions = <3 15>; };
+        dllr { bindings = <&kp DOLLAR>; key-positions = <4 16>; };
+        percnt { bindings = <&kp PERCENT>; key-positions = <5 17>; };
+        caret { bindings = <&kp CARET>; key-positions = <6 18>; };
+        and { bindings = <&kp AMPERSAND>; key-positions = <7 19>; };
+        str { bindings = <&kp ASTERISK>; key-positions = <8 20>; };
+        leftparen { bindings = <&kp LPAR>; key-positions = <9 21>; };
+        rparen { bindings = <&kp RPAR>; key-positions = <10 22>; };
+        layout_switch { bindings = <&tog 4>; key-positions = <36 37 40 41>; };
+        system_reset { bindings = <&sys_reset>; key-positions = <3 4 5 14>; };
+        bootloader { bindings = <&bootloader>; key-positions = <15 16 17 26>; };
+        system_layer_combo { bindings = <&mo 3>; key-positions = <36 37 38>; };
     };
 
     conditional_layers { compatible = "zmk,conditional-layers"; };
@@ -131,40 +74,53 @@
     keymap {
         compatible = "zmk,keymap";
 
+        // Английский слой (Colemak) - слой 0
         colemak_layer {
             bindings = <
-&none  &kp Q  &kp W  &kp F          &kp P     &kp B          &kp J        &kp L                      &kp U             &kp Y    &kp SEMICOLON  &none
-&none  &kp A  &kp R  &kp S          &kp T     &kp G          &kp M        &kp N                      &kp E             &kp I    &kp O          &none
-&none  &kp Z  &kp X  &kp C          &kp D     &kp V          &kp K        &kp H                      &kp COMMA         &kp DOT  &kp FSLH       &none
-                     &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE    &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
+                &none  &kp Q  &kp W  &kp F  &kp P  &kp B          &kp J  &kp L  &kp U  &kp Y  &to 5  &none
+                &none  &kp A  &kp R  &kp S  &kp T  &kp G          &kp M  &kp N  &kp E  &kp I  &kp O  &none
+                &none  &kp Z  &kp X  &kp C  &kp D  &kp V          &kp K  &kp H  &kp COMMA  &kp DOT  &kp FSLH  &none
+                                   &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE  &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
 
-
+        // Символьный слой - слой 1
         numsym_layer {
             bindings = <
-&trans  &kp N1         &kp N2     &kp N3     &kp N4     &kp N5          &kp LESS_THAN     &kp LEFT_BRACKET   &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp SEMICOLON  &trans
-&trans  &kp NUMBER_6   &kp N7     &kp N8     &kp N9     &kp NUMBER_0    &kp LEFT          &kp DOWN           &kp UP           &kp RIGHT              &kp SQT        &trans
-&trans  &kp BACKSLASH  &kp MINUS  &kp EQUAL  &kp SLASH  &kp ASTERISK    &kp GREATER_THAN  &kp RIGHT_BRACKET  &kp RIGHT_BRACE  &kp RIGHT_PARENTHESIS  &kp GRAVE      &trans
-                                  &trans     &trans     &trans          &trans            &trans             &trans
+                &trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5          &kp LESS_THAN  &kp LEFT_BRACKET  &kp LEFT_BRACE  &kp LEFT_PARENTHESIS  &kp SEMICOLON  &trans
+                &trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0          &kp LEFT       &kp DOWN          &kp UP          &kp RIGHT             &kp SQT        &trans
+                &trans  &kp BSLH  &kp MINUS  &kp EQUAL  &kp SLASH  &kp ASTERISK  &kp GREATER_THAN  &kp RIGHT_BRACKET  &kp RIGHT_BRACE  &kp RIGHT_PARENTHESIS  &kp GRAVE  &trans
+                                             &trans    &trans     &trans          &trans             &trans             &trans
             >;
         };
 
+        // Функциональный слой - слой 2
         fun_layer {
             bindings = <
-&trans  &kp SPACE  &kp UP_ARROW     &kp ENTER       &kp PAGE_UP    &kp C_VOL_UP    &kp C_BRIGHTNESS_INC  &kp F1  &kp F4  &kp F7  &kp F10  &trans
-&trans  &kp LEFT   &kp DOWN         &kp RIGHT       &kp HOME       &kp C_MUTE      &kp C_PLAY_PAUSE      &kp F2  &kp F5  &kp F8  &kp F11  &trans
-&trans  &kp INS    &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAGE_DOWN  &kp C_VOL_DN    &kp C_BRIGHTNESS_DEC  &kp F3  &kp F6  &kp F9  &kp F12  &trans
-                                    &trans          &trans         &trans          &trans                &trans  &trans
+                &trans  &kp SPACE  &kp UP     &kp ENTER  &kp PG_UP  &kp C_VOL_UP  &kp C_BRI_UP  &kp F1  &kp F4  &kp F7  &kp F10  &trans
+                &trans  &kp LEFT   &kp DOWN   &kp RIGHT  &kp HOME   &kp C_MUTE    &kp C_PP      &kp F2  &kp F5  &kp F8  &kp F11  &trans
+                &trans  &kp INS    &kp PSCRN  &kp SLCK   &kp PG_DN  &kp C_VOL_DN  &kp C_BRI_DN  &kp F3  &kp F6  &kp F9  &kp F12  &trans
+                                           &trans       &trans     &trans         &trans        &trans  &trans
             >;
         };
 
+        // Системный слой - слой 3
         sys_layer {
             bindings = <
-&trans  &bt BT_CLR    &bt BT_CLR_ALL  &bt BT_PRV    &bt BT_NXT    &trans          &none   &trans  &trans  &trans  &trans  &trans
-&trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &none   &none   &none   &none   &trans
-&trans  &bootloader   &sys_reset      &none         &none         &none           &none   &trans  &trans  &trans  &trans  &trans
-                                      &trans        &trans        &trans          &trans  &trans  &trans
+                &trans  &bt BT_CLR  &bt BT_CLR_ALL  &bt BT_PRV  &bt BT_NXT  &trans       &none   &trans  &trans  &trans  &trans  &trans
+                &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &none   &none   &none   &none   &trans
+                &trans  &bootloader  &sys_reset     &none        &none       &none        &none   &trans  &trans  &trans  &trans  &trans
+                                             &trans  &trans      &trans      &trans       &trans  &trans
+            >;
+        };
+
+        // Русский слой - слой 5
+        russian_layer {
+            bindings = <
+                &none  &kp CYRILLIC_SHORT_I  &kp CYRILLIC_TSE  &kp CYRILLIC_U  &kp CYRILLIC_KA  &kp CYRILLIC_IE  &kp CYRILLIC_EL  &kp CYRILLIC_SHCHA  &kp CYRILLIC_YA  &kp CYRILLIC_ZHE  &to 0  &none
+                &none  &kp CYRILLIC_A        &kp CYRILLIC_ER   &kp CYRILLIC_ES &kp CYRILLIC_TE  &kp CYRILLIC_GHE &e_yo CYRILLIC_IE CYRILLIC_IO  &kp CYRILLIC_EN  &kp CYRILLIC_I  &kp CYRILLIC_O  &none
+                &none  &kp CYRILLIC_ZE       &kp CYRILLIC_HA   &kp CYRILLIC_EF &kp CYRILLIC_DE  &b_soft_hard CYRILLIC_SOFT_SIGN CYRILLIC_HARD_SIGN  &kp CYRILLIC_EM  &kp CYRILLIC_VE  &kp COMMA  &kp DOT  &kp FSLH  &none
+                                             &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE  &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
     };
