@@ -26,7 +26,7 @@
             label = "E_YO";
             #binding-cells = <0>;
             bindings = <&kp CYRILLIC_IE>, <&kp CYRILLIC_IO>;
-            mods = <(MOD_LSFT)>;
+            mods = <MOD_LSFT>;  // Только левый Shift
         };
 
         b_soft_hard: b_soft_hard {
@@ -34,7 +34,7 @@
             label = "B_SOFT_HARD";
             #binding-cells = <0>;
             bindings = <&kp CYRILLIC_SOFT_SIGN>, <&kp CYRILLIC_HARD_SIGN>;
-            mods = <(MOD_LSFT)>;
+            mods = <MOD_LSFT>;  // Только левый Shift
         };
     };
 
