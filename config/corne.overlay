@@ -26,3 +26,14 @@
 		zmk,underglow = &led_strip;
 	};
 };
+
+/ {
+    behaviors {
+        battery_meter: battery_meter {
+            compatible = "zmk,behavior-driver";
+            label = "BATTERY_METER";
+            #binding-cells = <0>;
+            behavior-driver-api = &behavior_driver_api;
+        };
+    };
+};
