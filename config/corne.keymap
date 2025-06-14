@@ -30,6 +30,12 @@
             bindings = <&kp ESCAPE>;
         };
 
+        combo_lang_switch {
+            bindings = <&kp LA(LSHIFT)>;
+            key-positions = <1 13>; // Пример: любые 2 рядом стоящие клавиши
+            timeout-ms = <50>;
+        };
+
         combo_bksp {
             timeout-ms = <50>;
             key-positions = <10 9 8>;
