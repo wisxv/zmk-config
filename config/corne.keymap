@@ -9,8 +9,21 @@
 
 
 &led_strip {
-    chain-length = <18>;  // Укажите нужное количество светодиодов
+    chain-length = <18>;
 };
+
+/ {
+    behaviors {
+        // Кастомное поведение для двойных символов (tap = первый, hold = второй)
+        ru_dual: ru_dual_behavior {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
 
 &mt {
     tapping-term-ms = <400>;
@@ -173,6 +186,15 @@
 &trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &none   &none   &none   &none   &trans
 &trans  &bootloader   &sys_reset      &none         &rgb_ug RGB_TOG         &rgb_ug RGB_BRD          &rgb_ug RGB_BRI   &trans  &trans  &trans  &trans  &trans
                                       &trans        &trans        &trans          &trans  &trans  &trans
+            >;
+        };
+        russian_layer {
+            bindings = <
+
+&none    &kp RU_E    &ru_dual RU_SHA RU_SHCH  &kp RU_EF    &kp RU_PE    &kp RU_BE    &kp RU_ZHE   &kp RU_EL   &kp RU_U    &kp RU_YA   &ru_dual RU_SOFT RU_HARD  &none
+&none    &kp RU_A    &kp RU_ER               &kp RU_ES    &kp RU_TE    &kp RU_GHE   &kp RU_EM    &kp RU_EN   &ru_dual RU_IE RU_YO  &ru_dual RU_I RU_SHTI  &kp RU_O   &none
+&none    &kp RU_ZE   &kp RU_YERU             &ru_dual RU_TSE RU_CHE  &kp RU_DE  &kp RU_VE  &kp RU_KA   &kp RU_HA   &kp COMMA   &kp DOT    &kp RU_YU   &none
+                     &mt LCTRL TAB          &kp LGUI     &lt 2 SPACE  &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
     };
