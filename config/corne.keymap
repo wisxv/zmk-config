@@ -190,10 +190,10 @@
 
         russian_layer {
             bindings = <
-&none    &kp RU_E    &none  &none    &none    &none    &none   &kp RU_EL   &kp RU_U    &kp RU_YA   &none  &none
-&none    &none    &none               &none   &none    &none   &none    &none   &none &none  &none &none  &none   &none
-&none    &none   &none             &none  &none  &none  &none   &none   &none   &none    &none   &none
-                     &mt LCTRL TAB          &kp LGUI     &lt 2 SPACE  &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
+&none  &kp RU_E   &none  &kp RU_EF  &kp RU_PE  &kp RU_BE               &kp RU_ZHE &kp RU_EL   &kp RU_U    &kp RU_YA   &none  &none
+&none  &kp RU_A   &none  &none      &none      &none                   &none  &none  &none  &none  &none  &none  
+&none  &kp RU_ZE  &none  &none      &none      &none                   &none  &none  &none  &none  &none  &none
+        &mt LCTRL TAB  &kp LGUI  &lt 2 SPACE                           &lt 1 ENTER  &mt RIGHT_SHIFT BACKSPACE  &mt LEFT_ALT ESC
             >;
         };
     };
