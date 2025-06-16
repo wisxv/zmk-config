@@ -136,6 +136,18 @@
 
     conditional_layers { compatible = "zmk,conditional-layers"; };
 
+    macros {
+        ru_a_ctrl: ru_a_ctrl {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <10>;
+            bindings = 
+                <&macro_press_if_mods_held &kp LCTRL &kp A>,
+                <&macro_tap_if_mods_released &kp RU_A>;
+        };
+    };
+
     behaviors {
         // Кастомное поведение для двойных символов (tap = первый, hold = второй)
         ru_dual: ru_dual_behavior {
@@ -145,12 +157,6 @@
             quick-tap-ms = <150>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
-        };
-        ru_a_ctrl: ru_a_ctrl {
-            compatible = "zmk,behavior-conditional-mod";
-            #binding-cells = <0>;
-            bindings = <&kp A>, <&kp RU_A>; // Если Ctrl нажат → A, иначе → RU_A
-            mods = <(MOD_LCTL)>; // Условие: зажат левый Ctrl
         };
     };
 
