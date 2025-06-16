@@ -190,8 +190,8 @@
 
         russian_layer {
             bindings = <
-&none  &kp RU_E   &ru_dual RU_SHA RU_SHCH  &kp RU_EF               &kp RU_PE  &kp RU_BE       &kp RU_ZHE     &kp RU_EL   &kp RU_U          &kp RU_YA           &ru_dual RU_SOFT RU_HARD     &none
-&none  &kp RU_A   &kp RU_ER                &kp RU_ES               &kp RU_TE  &kp RU_GHE      &kp RU_EM      &kp RU_EN   &ru_dual RU_IE RU_YO  &ru_dual RU_I RU_SHTI  &kp RU_O  &none  
+&none  &kp RU_E   &ru_dual RU_SHCH RU_SHA  &kp RU_EF               &kp RU_PE  &kp RU_BE       &kp RU_ZHE     &kp RU_EL   &kp RU_U          &kp RU_YA           &ru_dual RU_HARD RU_SOFT   &none
+&none  &kp RU_A   &kp RU_ER                &kp RU_ES               &kp RU_TE  &kp RU_GHE      &kp RU_EM      &kp RU_EN   &ru_dual RU_YO RU_IE  &ru_dual RU_SHTI RU_I  &kp RU_O  &none  
 &none  &kp RU_ZE  &kp RU_YERU              &ru_dual RU_TSE RU_CHE  &kp RU_DE  &kp RU_VE       &kp RU_KA      &kp RU_HA   &kp COMMA             &kp DOT                &kp RU_YU &none
                                            &mt LCTRL TAB           &kp LGUI   &lt 2 SPACE     &lt 1 ENTER    &mt RIGHT_SHIFT BACKSPACE &mt LEFT_ALT ESC
             >;
