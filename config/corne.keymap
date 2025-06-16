@@ -132,6 +132,34 @@
             bindings = <&mo 3>;
             key-positions = <36 37 38>;
         };
+
+        // Ctrl + A (позиции 13 + 25)
+        combo_ctrl_a {
+            bindings = <&kp LC(A)>;
+            key-positions = <13 25>;
+            timeout-ms = <50>;
+        };
+
+        // Ctrl + X (позиции 14 + 26)
+        combo_ctrl_x {
+            bindings = <&kp LC(X)>;
+            key-positions = <14 26>;
+            timeout-ms = <50>;
+        };
+
+        // Ctrl + C (позиции 15 + 27)
+        combo_ctrl_c {
+            bindings = <&kp LC(C)>;
+            key-positions = <15 27>;
+            timeout-ms = <50>;
+        };
+
+        // Ctrl + V (позиции 16 + 28)
+        combo_ctrl_v {
+            bindings = <&kp LC(V)>;
+            key-positions = <16 28>;
+            timeout-ms = <50>;
+        };
     };
 
     conditional_layers { compatible = "zmk,conditional-layers"; };
